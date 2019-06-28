@@ -12,6 +12,43 @@
     <tomcat.version>8.0.48</tomcat.version>
   </properties>
   <dependencies>
+      <!-- logging , spring 5 no more bridge, thanks spring-jcl -->
+      <dependency>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+          <version>1.2.3</version>
+      </dependency>
+
+      <!-- junit 5, unit test -->
+      <dependency>
+          <groupId>org.junit.jupiter</groupId>
+          <artifactId>junit-jupiter-engine</artifactId>
+          <version>5.3.1</version>
+          <scope>test</scope>
+      </dependency>
+
+      <!-- for web servlet -->
+
+      <dependency>
+          <groupId>javax.servlet</groupId>
+          <artifactId>javax.servlet-api</artifactId>
+          <version>3.1.0</version>
+          <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+          <groupId>javax.servlet.jsp</groupId>
+          <artifactId>javax.servlet.jsp-api</artifactId>
+          <version>2.3.1</version>
+          <scope>provided</scope>
+      </dependency>
+
+      <!-- Some containers like Tomcat don't have jstl library -->
+      <dependency>
+          <groupId>javax.servlet</groupId>
+          <artifactId>jstl</artifactId>
+          <version>1.2</version>
+      </dependency>
 
     <!-- Tomcat embedded container -->
     <dependency>
@@ -55,6 +92,12 @@
   </dependencies>
   <build>
      <finalName>web-app-demo</finalName>
+      <resources>
+          <resource>
+              <directory>src/main/webapp</directory>
+              <targetPath>META-INF/resources</targetPath>
+          </resource>
+      </resources>
       <plugins>
           <plugin>
               <groupId>org.apache.maven.plugins</groupId>
